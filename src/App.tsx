@@ -19,6 +19,7 @@ function App() {
 
   return (
     <div className="App">
+      <h3>Open dev tools to check the cached request</h3>
       <button type="button" onClick={resetCache}>
         Reset cache
       </button>
@@ -27,7 +28,9 @@ function App() {
         Clear cache
       </button>
 
-      {JSON.stringify(dt)}
+      <div style={{ marginTop: "16px" }}>
+        {JSON.stringify(dt, null, 2)}
+      </div>
     </div>
   )
 }
