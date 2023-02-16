@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { fetchWithCache, resetCache, clearCache } from './useFetch';
+import { fetchWithCache, resetCache, clearCache } from './index';
 
 const URL = "https://api.github.com/users/SamuelFormigheri";
 
