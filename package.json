@@ -1,12 +1,13 @@
 {
   "name": "sf-fetch",
   "author": "Samuel Formigheri",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Simple lib to implement cache on fetch requests",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/SamuelFormigheri/sf-fetch.git"
-  },
+  "keywords": [
+    "fetch",
+    "cache"
+  ],
+  "repository": "SamuelFormigheri/sf-fetch",
   "type": "module",
   "files": [
     "dist"
