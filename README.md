@@ -11,3 +11,6 @@ Clear cache url
 
 ## resetCache
 Reset all caches url
+
+## clearCacheKeysThatIncludes
+Clear all cache keys that includes the value passed as parameter
