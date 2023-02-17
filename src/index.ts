@@ -52,13 +52,26 @@ export async function clearCache(url: string): Promise<void> {
 
 /**
  * Reset all cache url
- * @param url 
  */
 export async function resetCache(): Promise<void> {
     const cacheStorage: Cache = await caches.open(CACHE_NAME);
 
     cacheStorage.keys().then(cacheNames => {
         cacheNames.forEach(cacheName => {
+            cacheStorage.delete(cacheName.url);
+        });
+    });
+}
+
+/**
+ * Clear all cache keys that includes the value passed as parameter
+ * @param value 
+ */
+export async function clearCacheKeysThatIncludes(value: string): Promise<void> {
+    const cacheStorage: Cache = await caches.open(CACHE_NAME);
+
+    cacheStorage.keys().then(cacheNames => {
+        cacheNames.filter(names => names.url.includes(value)).forEach(cacheName => {
             cacheStorage.delete(cacheName.url);
         });
     });
