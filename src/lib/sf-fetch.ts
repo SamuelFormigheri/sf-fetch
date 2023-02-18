@@ -1,8 +1,8 @@
 const CACHE_NAME = 'SF_FETCH';
 
 /**
- * Executes a fetch caching the response for a specific amount of time
- * You can check the date that the response was executed by the header 'date' => response.headers.get(`date`)
+ * Executes a fetch caching the response for a specific amount of time.
+ * You can check the date that the response was executed passing the header to the function getResponseDate
  * @param url 
  * The url to make the request
  * @param time 
@@ -50,7 +50,6 @@ export async function clearCache(url: string): Promise<void> {
     cacheStorage.delete(url);
 }
 
-
 /**
  * Reset all cache url
  */
@@ -76,4 +75,17 @@ export async function clearCacheKeysThatIncludes(value: string): Promise<void> {
             cacheStorage.delete(cacheName.url);
         });
     });
+}
+
+/**
+ * Get the date that the response was executed by the header 'date'
+ * @param response 
+ */
+export function getResponseDate(response: Response): Date | null {
+    const dateHeader = Number(response.headers.get(`date`));
+
+    if (!dateHeader)
+        return null;
+
+    return new Date(dateHeader);
 }

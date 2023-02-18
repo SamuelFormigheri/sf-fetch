@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { fetchWithCache, resetCache, clearCache } from './lib/sf-fetch';
+import { fetchWithCache, resetCache, clearCache, getResponseDate } from './lib/sf-fetch';
 
 const URL = "https://api.github.com/users/SamuelFormigheri";
 
@@ -9,8 +9,7 @@ function App() {
   async function fetchData() {
     await fetchWithCache(URL, 60000)
       .then(async (response) => {
-        const dateHeader = response.headers.get(`date`);
-        console.log(dateHeader);
+        console.log(getResponseDate(response));
         const data = await response.json();
         setData(data);
       });

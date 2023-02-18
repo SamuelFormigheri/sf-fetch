@@ -12,7 +12,7 @@ yarn add sf-fetch
 
 ## Usage
 
-It exposes 3 functions:
+It exposes 5 functions:
 
 ### fetchWithCache
 Executes a fetch caching the response for a specific amount of time
@@ -25,3 +25,6 @@ Reset all caches url
 
 ### clearCacheKeysThatIncludes
 Clear all cache keys that includes the value passed as parameter
+
+### getResponseDate
+Get the date that the response was executed by the header 'date'
