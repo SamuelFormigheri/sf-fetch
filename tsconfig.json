@@ -26,7 +26,7 @@
     "baseUrl": ".",
     "paths": {
       "sf-fetch": [
-        "src/index.ts"
+        "src/lib/sf-fetch.ts"
       ]
     }
   },

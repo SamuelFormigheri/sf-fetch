@@ -1,8 +1,8 @@
 const CACHE_NAME = 'SF_FETCH';
-const CACHE_DATE_EXPIRACY_KEY = `${CACHE_NAME}_DATE`;
 
 /**
  * Executes a fetch caching the response for a specific amount of time
+ * You can check the date that the response was executed by the header 'date' => response.headers.get(`date`)
  * @param url 
  * The url to make the request
  * @param time 
@@ -15,20 +15,17 @@ export async function fetchWithCache(url: string, time: number = 3600000): Promi
 
     const cachedResponse = await cacheStorage.match(url);
 
-    if (cachedResponse) {
-        const now = new Date().getTime();
-        const cachedResponseDate = new Headers(cachedResponse.headers).get(CACHE_DATE_EXPIRACY_KEY);
-        if (cachedResponseDate !== null && now < Number(cachedResponseDate) + time) {
-            return cachedResponse;
-        }
+    if (cachedResponse && new Date().getTime() < Number(new Headers(cachedResponse.headers).get('date')) + time) {
+        return cachedResponse;
     }
 
     const response = await fetch(url);
 
+    const headers = new Headers(response.headers);
+    headers.set('date', new Date().getTime().toString());
+
     if (response && (response.status <= 200 || response.status > 300)) {
         const responseToCache = response.clone();
-        const headers = new Headers(responseToCache.headers);
-        headers.set(CACHE_DATE_EXPIRACY_KEY, new Date().getTime().toString());
         cacheStorage.put(url, new Response(responseToCache.body, {
             headers,
             status: responseToCache.status,
@@ -36,7 +33,11 @@ export async function fetchWithCache(url: string, time: number = 3600000): Promi
         }));
     }
 
-    return response;
+    return new Response(response.body, {
+        headers,
+        status: response.status,
+        statusText: response.statusText
+    });
 }
 
 /**

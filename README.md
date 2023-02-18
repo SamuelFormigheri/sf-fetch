@@ -1,16 +1,27 @@
 # sf-fetch
 
 This is a simple library to implement cache on fetch using the cache api from browser.
+
+## Install
+
+### npm
+npm i sf-fetch
+
+### yarn
+yarn add sf-fetch
+
+## Usage
+
 It exposes 3 functions:
 
-## fetchWithCache
+### fetchWithCache
 Executes a fetch caching the response for a specific amount of time
 
-## clearCache
+### clearCache
 Clear cache url
 
-## resetCache
+### resetCache
 Reset all caches url
 
-## clearCacheKeysThatIncludes
+### clearCacheKeysThatIncludes
 Clear all cache keys that includes the value passed as parameter
