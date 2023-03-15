@@ -10,7 +10,7 @@ const CACHE_NAME = 'SF_FETCH';
  * @default 3600000 => 5 minutes
  * @returns Response
  */
-export async function fetchWithCache(url: string, time: number = 3600000): Promise<Response> {
+export async function fetchWithCache(url: string, time: number = 3600000, init?: RequestInit | undefined): Promise<Response> {
     const cacheStorage: Cache = await caches.open(CACHE_NAME);
 
     const cachedResponse = await cacheStorage.match(url);
@@ -19,7 +19,7 @@ export async function fetchWithCache(url: string, time: number = 3600000): Promi
         return cachedResponse;
     }
 
-    const response = await fetch(url);
+    const response = await fetch(url, init);
 
     const headers = new Headers(response.headers);
     headers.set('date', new Date().getTime().toString());

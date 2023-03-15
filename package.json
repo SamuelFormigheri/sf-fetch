@@ -1,7 +1,7 @@
 {
   "name": "sf-fetch",
   "author": "Samuel Formigheri",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Simple lib to implement cache on fetch requests",
   "keywords": [
     "fetch",
