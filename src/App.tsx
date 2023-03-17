@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { SFetch } from './lib/sf-fetch';
+import { fetchWithCache, getResponseDate, clearAllCache, clearCache } from './lib/sf-fetch';
 
 const URL = "https://api.github.com/users/SamuelFormigheri";
 
@@ -7,9 +7,9 @@ function App() {
   const [dt, setData] = useState({});
 
   async function fetchData() {
-    await SFetch.fetchWithCache(URL, 60000)
+    await fetchWithCache(URL, 60000)
       .then(async (response) => {
-        console.log(SFetch.getResponseDate(response));
+        console.log(getResponseDate(response));
         const data = await response.json();
         setData(data);
       });
@@ -20,11 +20,11 @@ function App() {
   return (
     <div className="App">
       <h3>Open dev tools to check the cached request</h3>
-      <button type="button" onClick={() => SFetch.clearAllCache()}>
+      <button type="button" onClick={() => clearAllCache()}>
         Reset cache
       </button>
 
-      <button type="button" onClick={() => SFetch.clearCache(URL)}>
+      <button type="button" onClick={() => clearCache(URL)}>
         Clear cache
       </button>
 
