@@ -20,8 +20,8 @@ Executes a fetch caching the response for a specific amount of time
 ### clearCache
 Clear cache url
 
-### resetCache
-Reset all caches url
+### clearAllCache
+Clear all cache
 
 ### clearCacheKeysThatIncludes
 Clear all cache keys that includes the value passed as parameter
